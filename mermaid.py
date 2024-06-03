@@ -1,4 +1,10 @@
-#python3 mermaid_viewer.py 'graph TD; A-->B; A-->C; B-->D; C-->D;' 
+# Visualizador de Mermaid - por Seb Findling
+# Se puede enviar un archivo o codigo como parmetro, o nada para seleccionar visualmente:
+
+# python3 mermaid.py 'codigo mermaid'
+# python3 mermaid.py <archivo>
+# python3 mermaid.py
+
 
 import sys
 import os
@@ -10,18 +16,21 @@ class MermaidViewer(QMainWindow):
     def __init__(self, mermaid_code=None, file_path=None):
         super().__init__()
         self.setWindowTitle('Mermaid Viewer')
-        self.setGeometry(100, 100, 800, 600)
+        #self.setGeometry(100, 100, 800, 600)
         
         self.web_view = QWebEngineView()
         self.setCentralWidget(self.web_view)
 
-        if file_path:
-            with open(file_path, 'r') as file:
-                mermaid_code = file.read()
-        
         if mermaid_code:
             self.display_mermaid(mermaid_code)
+
         else:
+          if file_path:
+            with open(file_path, 'r') as file:
+                mermaid_code = file.read()
+            self.display_mermaid(mermaid_code)
+
+          else:
             self.open_file_dialog()
 
     def display_mermaid(self, mermaid_code):
@@ -30,12 +39,11 @@ class MermaidViewer(QMainWindow):
         <html>
         <head>
             <script type="module">
-                import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.esm.min.mjs';
-                mermaid.initialize({{ startOnLoad: true }});
+                import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.0.2/dist/mermaid.esm.min.mjs';
             </script>
         </head>
-        <body>mermai
-            <div class="mermaid">
+        <body>
+            <div class="mermaid" style="color:white">
                 {mermaid_code}
             </div>
         </body>
@@ -45,14 +53,19 @@ class MermaidViewer(QMainWindow):
 
     def open_file_dialog(self):
         file_dialog = QFileDialog()
-        file_path, _ = file_dialog.getOpenFileName(self, "Open Mermaid File", "", "Text Files (*.txt);;All Files (*)")
+        file_path, _ = file_dialog.getOpenFileName(self, "Abrir archivo Mermaid", "", "Archivos de texto (*.txt);;Todos los archivos (*)")
         if file_path:
             with open(file_path, 'r') as file:
                 mermaid_code = file.read()
             self.display_mermaid(mermaid_code)
+        else:
+            sys.exit()
 
 def main():
-    app = QApplication(sys.argv)
+    app = QApplication(sys.argv + ['--no-sandbox'])
+    print("argv")
+    print(sys.argv)
+
     mermaid_code = None
     file_path = None
 
