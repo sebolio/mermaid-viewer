@@ -1,18 +1,34 @@
-# visualizador de mermaid en python
+# Visualizador de Mermaid en Python 3
 
-instalar
+### Usar Virtual Env como buena práctica
+VENV en Linux o Mac
+```
+python -m venv venv
+source venv/bin/activate
+```
+
+VENV en Windows
+```
+python -m venv venv
+source venv/scripts/activate.cmd
+```
+
+### Instalar dependencias
 ```
 pip3 install PyQt5 PyQtWebEngine
 ```
-correr (recibe codigo o archivo como parametro, o abre selector)
+
+### Correr
+Puede recibir codigo o un archivo como parametro, o abre el selector
 ```
 python3 mermaid.py
 python3 mermaid.py 'string'
-python3 mermaid.py archivo
+python3 mermaid.py ejemplo.txt
 ```
 
-crear binario:
+### Crear binario:
+Si quieres generar un binario portátil del visualizador:
 
 ```
-pyinstaller -F --icon=C:\pathtoyouricon\icon.ico --noconsole mermaid.py
+pyinstaller -F --noconsole mermaid.py
 ```
