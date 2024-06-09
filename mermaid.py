@@ -15,7 +15,7 @@ from PyQt5.QtCore import QUrl
 class MermaidViewer(QMainWindow):
     def __init__(self, mermaid_code=None, file_path=None):
         super().__init__()
-        self.setWindowTitle('Mermaid Viewer')
+        self.setWindowTitle('Visualizador de Mermaid')
         #self.setGeometry(100, 100, 800, 600)
         
         self.web_view = QWebEngineView()
@@ -63,8 +63,6 @@ class MermaidViewer(QMainWindow):
 
 def main():
     app = QApplication(sys.argv + ['--no-sandbox'])
-    print("argv")
-    print(sys.argv)
 
     mermaid_code = None
     file_path = None
