@@ -3,14 +3,15 @@
 ### Usar Virtual Env como buena práctica
 VENV en Linux o Mac
 ```
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate
 ```
 
 VENV en Windows
 ```
-python -m venv venv
-source venv/scripts/activate.cmd
+python3 -m venv venv
+venv/scripts/activate.bat
+venv/scripts/activate.ps1
 ```
 
 ### Instalar dependencias
