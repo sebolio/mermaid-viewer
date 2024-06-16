@@ -17,7 +17,7 @@ venv/scripts/activate.ps1
 ### Instalar dependencias
 ```
 pip3 install PyQt5 PyQtWebEngine
-sudo apt install libqt5x11extras5 #linux
+sudo apt install -y libqt5x11extras5 #linux
 ```
 
 ### Correr
